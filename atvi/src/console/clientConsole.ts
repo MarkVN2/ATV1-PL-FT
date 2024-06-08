@@ -1,4 +1,5 @@
 import DeleteClient from "../functions/delete/deleteClient";
+import EditClient from "../functions/edit/editClient";
 import RegisterClient from "../functions/register/registerClient";
 import ShowClients from "../functions/show/showClient";
 import Entry from "../io/entry";
@@ -13,12 +14,14 @@ export default class ClientConsole{
     }
     enter():void{
         while(this.active){
-            console.log(`\nOpções:`);
-            console.log(`1 - Cadastrar cliente`);
-            console.log(`2 - Listar todos os clientes`);
-            console.log(`3 - Deletar cliente`);
-            console.log(`4 - Atualizar cadastro do cliente`);
-            console.log(`0 - Voltar`);
+            console.log("+-------------------------------------------+");
+            console.log("|          1. INSERIR   Cliente             |");
+            console.log("|          2. EXCLUIR   Cliente             |");
+            console.log("|          3. EDITAR    Cliente             |");
+            console.log("|          4. LISTAR    Clientes            |");
+            console.log("|          5. SOBRE PETS                    |");
+            console.log("|          0. Voltar                        |");
+            console.log("+-------------------------------------------+");
         
             let entry = new Entry();
             let option = entry.getNum(`Por favor, escolha uma opção: `);
@@ -29,15 +32,18 @@ export default class ClientConsole{
                     reg.register()
                     break;
                 case 2:
-                    let show = new ShowClients(this.company.getClients)
-                    show.show()
-                    break;
-                case 3:
                     let del = new DeleteClient(this.company.getClients)
                     del.delete()
+                    break;
+                case 3:
+                    let edit = new EditClient(this.company.getClients)
+                    edit.edit();
                     break
                 case 4:
-                    
+                    let show = new ShowClients(this.company.getClients)
+                    show.show()
+                    break
+                case 5:
                     break
                 case 0:
                     this.active = false

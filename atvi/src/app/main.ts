@@ -10,17 +10,31 @@ let company = new Company();
 let active  = true;
 
 while (active){
-    console.log(`Opções:`);
-    console.log(`1 - Opções sobre Clientes`);
-    console.log(`0 - Sair`);
+ 
+    console.log("+-------------------------------------------+");
+    console.log("|          1. OPÇÕES Cliente                |");
+    console.log("|          2. OPÇÕES Produtos               |");
+    console.log("|          3. OPÇÕES SERVIÇÕES              |");
+    console.log("|          4. LISTAR +CONSUMIDOS            |");
+    console.log("|          0. Sair do programa              |");
+    console.log("+-------------------------------------------+");
 
     let entry = new Entry();
-    let option = entry.getNum(`Por favor, escolha uma opção: `);
+    let option = entry.getNum(`Sua opção: `);
 
     switch(option){
         case 1:
             let clientconsole = new ClientConsole(company)
             clientconsole.enter()
+            break;
+        case 2:
+            console.log(`Opção 2`)
+            break;
+        case 3:
+            console.log(`Opção 3`)
+            break;
+        case 4:
+            console.log(`Opção 4`)
             break;
         case 0:
             active = false

@@ -14,7 +14,28 @@ export default class DeleteClient extends Delete{
     }
 
     public delete(): void {
-        console.log(`\nDeletar Cliente`);
+        if (this.clients.length == 0) {
+            console.log(`\n+-------------------------------------------+`)
+            console.log(`|          Nenhum cliente cadastrado        |`)
+            console.log(`+-------------------------------------------+\n`)
+            return
+        }
+        console.log(`\n+-------------------------------------------+`)
+        let selectedClientCPF = this.entry.getStr("| CPF do cliente a ser deletado: ")
+        console.log(`+-------------------------------------------+`)
+   
+        let selectedClient = this.clients.find(client => client.getCpf.getValue == selectedClientCPF)
+        if (selectedClient != null){
+            this.clients.splice(this.clients.indexOf(selectedClient), 1)
+            console.log(`|       Cliente deletado com sucesso!       |`)
+            console.log(`+-------------------------------------------+\n`)
+            return
+        }
+        else{
+            console.log(`|       Cliente não encontrado!             |`)
+            console.log(`+-------------------------------------------+\n`)
+            return
+        }
 
     }
 }
