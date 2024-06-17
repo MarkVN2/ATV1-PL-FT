@@ -1,8 +1,9 @@
 import Entry from "../../io/entry";
 import Client from "../../models/client";
-import Delete from "../delete";
+import Edit from "../edit";
+import ShowClients from "../show/showClient";
 
-export default class DeletePet extends Delete{
+export default class EditPet extends Edit{
     private clients : Array<Client>;
     private entry : Entry;
     constructor(clients : Array<Client>){
@@ -11,15 +12,17 @@ export default class DeletePet extends Delete{
         this.entry = new Entry()
     }
 
-    public delete(): void {
+    public edit(): void {
         if (this.clients.length == 0) {
             console.log(`\n+-------------------------------------------+`)
             console.log(`|          Nenhum cliente cadastrado        |`)
             console.log(`+-------------------------------------------+\n`)
             return
         }
+        let showclients = new ShowClients(this.clients)
+        showclients.show()
         console.log(`\n+-------------------------------------------+`)
-        let selectedClientCPF = this.entry.getStr("| CPF do dono do pet a ser deletado: ")
+        let selectedClientCPF = this.entry.getStr("| CPF do dono do pet a ser editado: ")
         console.log(`+-------------------------------------------+`)
         let selectedClient = this.clients.find(client => client.getCpf.getValue == selectedClientCPF)
         if (selectedClient != null ){
@@ -42,13 +45,16 @@ export default class DeletePet extends Delete{
             
                 console.log(`+-------------------------------------------+`);
             });
-            let selectedPetID = this.entry.getStr("| ID do pet a ser deletado: ")
+            let selectedPetID = this.entry.getStr("| ID do pet a ser editado: ")
             console.log(`+-------------------------------------------+`)
             let selectedPet = selectedClient.getPets[parseInt(selectedPetID) - 1]
             if (selectedPet != null){
-                selectedClient.getPets.splice(selectedClient.getPets.indexOf(selectedPet), 1)
+                selectedPet.setName(this.entry.getStr(`Por favor informe o nome do pet:  `))
+                selectedPet.setRace(this.entry.getStr(`Por favor informe a raça do pet: `))
+                selectedPet.setGender(this.entry.getStr(`Por favor informe o genero do pet: `))
+                selectedPet.setType(this.entry.getStr(`Por favor informe o nome tipo de pet: `))
                 console.log(`+-------------------------------------------+`)
-                console.log(`|        Pet deletado com sucesso!          |`)
+                console.log(`|          Pet editado com sucesso!         |`)
                 console.log(`+-------------------------------------------+\n`)
                 return
             }

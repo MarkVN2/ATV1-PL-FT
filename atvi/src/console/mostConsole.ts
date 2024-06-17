@@ -1,12 +1,13 @@
 import DeletePet from "../functions/delete/deletePet";
 import EditPet from "../functions/edit/editPet";
 import RegisterPet from "../functions/register/registerPet";
+import ShowClients from "../functions/show/showClient";
 import ShowPets from "../functions/show/showPet";
 import Entry from "../io/entry";
 import Company from "../models/company";
 import ShopConsole from "./shopconsole";
 
-export default class PetConsole implements ShopConsole{
+export default class MostConsole implements ShopConsole{
     company: Company;
     active:boolean;
     constructor(company:Company){
@@ -16,10 +17,8 @@ export default class PetConsole implements ShopConsole{
     enter():void{
         while(this.active){
             console.log("+-------------------------------------------+");
-            console.log("|          1. INSERIR   Pet                 |");
-            console.log("|          2. EXCLUIR   Pet                 |");
-            console.log("|          3. EDITAR    Pet                 |");
-            console.log("|          4. LISTAR    Pet                 |");
+            console.log("|   1. LISTAR 5+ CONSUMIDO POR NUMERO       |");
+            console.log("|   2. LISTAR 10+ CONSUMIDO POR VALOR       |");
             console.log("|          0. Voltar                        |");
             console.log("+-------------------------------------------+");
         
@@ -28,23 +27,13 @@ export default class PetConsole implements ShopConsole{
     
             switch(option){
                 case 1:
-                    let reg = new RegisterPet(this.company.getClients)
-                    reg.register()
+                    let show10 = new ShowClients(this.company.getClients)
+                    show10.show10()
                     break;
                 case 2:
-                    let del = new DeletePet(this.company.getClients)
-                    del.delete()
+                    let show5 = new  ShowClients(this.company.getClients)
+                    show5.show5()
                     break;
-                case 3:
-                    let edit = new EditPet(this.company.getClients)
-                    edit.edit();
-                    break
-                case 4:
-                    let show = new ShowPets(this.company.getClients)
-                    show.show()
-                    break
-                case 5:
-                    break
                 case 0:
                     this.active = false
                     break;

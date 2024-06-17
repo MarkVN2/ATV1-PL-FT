@@ -4,8 +4,9 @@ import RegisterClient from "../functions/register/registerClient";
 import ShowClients from "../functions/show/showClient";
 import Entry from "../io/entry";
 import Company from "../models/company";
+import ShopConsole from "./shopconsole";
 
-export default class ClientConsole{
+export default class ClientConsole implements ShopConsole{
     company: Company;
     active:boolean;
     constructor(company:Company){
@@ -19,7 +20,6 @@ export default class ClientConsole{
             console.log("|          2. EXCLUIR   Cliente             |");
             console.log("|          3. EDITAR    Cliente             |");
             console.log("|          4. LISTAR    Clientes            |");
-            console.log("|          5. SOBRE PETS                    |");
             console.log("|          0. Voltar                        |");
             console.log("+-------------------------------------------+");
         
@@ -42,8 +42,6 @@ export default class ClientConsole{
                 case 4:
                     let show = new ShowClients(this.company.getClients)
                     show.show()
-                    break
-                case 5:
                     break
                 case 0:
                     this.active = false

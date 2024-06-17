@@ -23,4 +23,16 @@ export default class Pet {
     public get getType(){
         return this.type
     }
+    public setName(name: string){
+        this.name = name
+    }
+    public setRace(race: string){
+        this.race = race
+    }
+    public setGender(gender: string){
+        this.gender = gender
+    }
+    public setType(type: string){
+        this.type = type
+    }
 }

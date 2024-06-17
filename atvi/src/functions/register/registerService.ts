@@ -1,28 +1,28 @@
 import Entry from "../../io/entry";
-import Product from "../../models/product";
+import Service from "../../models/service";
 import Register from "../register";
 
-export default class RegisterProduct extends Register{
-    private products : Array<Product>;
+export default class RegisterService extends Register{
+    private services : Array<Service>;
     private entry : Entry;
 
-    constructor(products : Array<Product>){
+    constructor(services : Array<Service>){
         super();
-        this.products = products;
+        this.services = services;
         this.entry = new Entry()
     }
     
     public register(): void {
         console.log(`\n+-------------------------------------------+`)
-        console.log(`| Início do cadastro de produto             |`);
+        console.log(`| Início do cadastro de serviço             |`);
         console.log(`+-------------------------------------------+`);
-
-        let nome = this.entry.getStr(`Por favor informe o nome do produto: `)
-        let value = this.entry.getNum(`Por favor informe o valor do produto: `);
-
-        let product = new Product(nome,value);
         
-        this.products.push(product)
+        let nome = this.entry.getStr(`Por favor informe o nome do serviço: `)
+        let value = this.entry.getNum(`Por favor informe o valor do serviço: `);
+
+        let service = new Service(nome,value);
+        
+        this.services.push(service)
         console.log(`\n+-------------------------------------------+`)
         console.log(`|          Cadastro concluído :)            |`);
         console.log(`+-------------------------------------------+\n`)

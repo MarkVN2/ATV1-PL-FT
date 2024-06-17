@@ -1,6 +1,8 @@
 import ClientConsole from "../console/clientConsole";
-import RegisterClient from "../functions/register/registerClient";
-import ShowClients from "../functions/show/showClient";
+import MostConsole from "../console/mostConsole";
+import PetConsole from "../console/petConsole";
+import ProductConsole from "../console/productConsole";
+import ServicesConsole from "../console/servicesConsole";
 import Entry from "../io/entry";
 import Company from "../models/company"
 
@@ -12,10 +14,11 @@ let active  = true;
 while (active){
  
     console.log("+-------------------------------------------+");
-    console.log("|          1. OPÇÕES Cliente                |");
-    console.log("|          2. OPÇÕES Produtos               |");
-    console.log("|          3. OPÇÕES SERVIÇÕES              |");
-    console.log("|          4. LISTAR +CONSUMIDOS            |");
+    console.log("|          1. OPÇÕES CLIENTES               |");
+    console.log("|          2. OPÇÕES PRODUTOS               |");
+    console.log("|          3. OPÇÕES SERVIÇOS               |");
+    console.log("|          4. OPÇÕES PETS                   |");
+    console.log("|          5. LISTAR +CONSUMIDOS            |");
     console.log("|          0. Sair do programa              |");
     console.log("+-------------------------------------------+");
 
@@ -28,14 +31,21 @@ while (active){
             clientconsole.enter()
             break;
         case 2:
-            console.log(`Opção 2`)
+            let productconsole = new ProductConsole(company)
+            productconsole.enter()
             break;
         case 3:
-            console.log(`Opção 3`)
+            let servicesconsole = new ServicesConsole(company)
+            servicesconsole.enter()
             break;
         case 4:
-            console.log(`Opção 4`)
+            let petconsole = new PetConsole(company)
+            petconsole.enter()
             break;
+        case 5:
+            let mostconsole = new MostConsole(company)
+            mostconsole.enter()
+            break
         case 0:
             active = false
             console.log(`Até mais`)

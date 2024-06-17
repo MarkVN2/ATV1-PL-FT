@@ -20,7 +20,7 @@ export default class RegisterClient extends Register{
         let nome = this.entry.getStr(`Por favor informe o nome do cliente: `)
         let nomeSocial = this.entry.getStr(`Por favor informe o nome social do cliente: `)
         let value = this.entry.getStr(`Por favor informe o número do cpf: `);
-        let date = this.entry.getStr(`Por favor informe a data de emissão do cpf, no padrão dd/mm/yyyy: `);
+        let date = this.entry.getStr(`Por favor informe a data de emissão do cpf, no padrão dd/mm/aaaa: `);
         
         let dateSlices = date.split('/')
 
